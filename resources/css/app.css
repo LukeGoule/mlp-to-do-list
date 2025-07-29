@@ -3,3 +3,12 @@ body {
     background-color: #f1f1f1;
 }
 
+.table {
+    thead {
+        border-bottom-color: #8f8f8f;
+    }
+
+    tbody tr:last-of-type {
+        border-bottom-color: white;
+    }
+}

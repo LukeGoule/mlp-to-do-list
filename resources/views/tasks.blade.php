@@ -1,3 +1,7 @@
+@props([
+    'tasks' => collect(),
+])
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,8 +13,52 @@
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-    </head>
-    <body>
 
+        @vite('resources/css/app.css')
+    </head>
+    <body class="container-md">
+        <div class="py-3 mb-lg-4">
+            <x-logo />
+        </div>
+
+        <div class="row gap-3">
+            <div class="col-lg-4">
+                <x-create-task-form />
+            </div>
+            <div class="col card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Task</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tasks as $task)
+                                <tr class="tr">
+                                    <th scope="row">{{ $task->number }}</th>
+                                    <td
+                                        class="{{ $task->completed ? 'text-decoration-line-through' : '' }}"
+                                    >{{ $task->name }}</td>
+                                    <td class="d-flex justify-content-end gap-2">
+                                        <x-check-task-off-form
+                                            :task="$task"
+                                        />
+                                        <x-delete-task-form
+                                            :task="$task"
+                                        />
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        @vite('resources/js/app.js')
     </body>
 </html>
