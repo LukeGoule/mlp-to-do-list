@@ -38,14 +38,21 @@
                         <tbody>
                             @foreach ($tasks as $task)
                                 <tr class="tr">
-                                    <th scope="row">{{ $task->number }}</th>
+                                    <th scope="row">
+                                        {{ $task->number }}
+                                    </th>
                                     <td
                                         class="{{ $task->completed ? 'text-decoration-line-through' : '' }}"
-                                    >{{ $task->name }}</td>
+                                    >
+                                        {{ $task->name }}
+                                    </td>
                                     <td class="d-flex justify-content-end gap-2">
-                                        <x-check-task-off-form
-                                            :task="$task"
-                                        />
+                                        @if (!$task->completed)
+                                            <x-check-task-off-form
+                                                :task="$task"
+                                            />
+                                        @endif
+
                                         <x-delete-task-form
                                             :task="$task"
                                         />
