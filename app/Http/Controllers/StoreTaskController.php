@@ -13,6 +13,7 @@ class StoreTaskController extends Controller
         $data = [
             ...$request->validated(),
             'number' => $this->nextTaskNumber(),
+            'completed' => false,
         ];
 
         Task::factory()->create($data);
